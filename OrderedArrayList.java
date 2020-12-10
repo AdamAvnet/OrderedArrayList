@@ -10,6 +10,8 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
 	}
 
 	private int findIndex(T element){
+		if(element == null)
+			throw new IllegalArgumentException("No nulls allowed.");
 		for(int i = 0; i < size(); i++){
 			if(get(i).compareTo(element) > 0)
 				return i;
@@ -29,10 +31,10 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
 	}
 
 	public T set(int index, T element){
-		int realindex = findIndex(element);
 		T oldvalue = get(index);
 		remove(index);
-		super.add(element);
+		int realindex = findIndex(element);
+		add(element);
 		return oldvalue;
 	}
 		
