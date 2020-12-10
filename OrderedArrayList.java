@@ -10,9 +10,8 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
 	}
 
 	private int findIndex(T element){
-		boolean bigger = true;
 		for(int i = 0; i < size(); i++){
-			if(get(i).compareTo(element) < 0)
+			if(get(i).compareTo(element) > 0)
 				return i;
 		}
 		return size();
@@ -31,7 +30,10 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
 
 	public T set(int index, T element){
 		int realindex = findIndex(element);
-		return super.set(realindex, element);
+		T oldvalue = get(index);
+		remove(index);
+		super.add(element);
+		return oldvalue;
 	}
 		
 }
