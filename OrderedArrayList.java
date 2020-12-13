@@ -32,6 +32,8 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
 
 	public T set(int index, T element){
 		T oldvalue = get(index);
+		if(element == null)
+			throw new IllegalArgumentException("No nulls allowed.");
 		remove(index);
 		int realindex = findIndex(element);
 		add(element);
